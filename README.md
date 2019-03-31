@@ -22,7 +22,6 @@ sudo apt-get remove mysql-common
 
 sudo rm -rf /etc/mysql/ /var/lib/mysql
 
-很重要
 
 清理残留数据
 

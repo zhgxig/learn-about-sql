@@ -48,9 +48,8 @@ INSERT INTO World
 ```
 3.输出国家的面积超过300万平方公里，或者(人口超过2500万并且gdp超过2000万)
 ```
-select * from World 
+select * 
+from World 
 where area > 3000000 
-or (
-    population > 25000000 
-    and gdp > 2000000);
+or (population > 25000000 and gdp > 2000000);
 ```

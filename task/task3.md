@@ -191,7 +191,35 @@ values (1, 3, "shenzhen", "guangdong"),
 +-----------+-------------+------+------+---------+-------+
 </pre>
 
+4.无论 person 是否有地址信息，都需要基于上述两表提供 person 的以下信息：FirstName, LastName, City, State
+```
+select ps.FirstName, ps.LastName, ad.City, ad.State from person as ps 
+join address as ad 
+on ps.PersonId = ad.PersonId;
+```
 
+
+#### 作业四
+1.创建表(email)
+```
+CREATE TABLE email (
+ID INT NOT NULL PRIMARY KEY,
+Email VARCHAR(255)
+```
+
+2.插入数据
+```
+INSERT INTO email VALUES('1','a@b.com');
+INSERT INTO email VALUES('2','c@d.com');
+INSERT INTO email VALUES('3','a@b.com');
+```
+
+3.编写一个 SQL 查询，来删除 email 表中所有重复的电子邮箱，重复的邮箱里只保留 Id 最小 的那个.
+```
+delete e1 
+from email e1, email e2 
+where e1.email=e2.email and e1.id>e2.id;
+```
 
 
 

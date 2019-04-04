@@ -30,7 +30,8 @@ insert into courses values("I", "Math");
 insert into courses values("A", "Math");
 ```
 
-<pre>+---------+----------+
+<pre>
++---------+----------+
 | student | class    |
 +---------+----------+
 | A       | Math     |
@@ -54,7 +55,8 @@ from (select distinct *
 group by c_r.class  
 having count(c_r.class) >= 5;
 ```
-<pre>+-------+
+<pre>
++-------+
 | class |
 +-------+
 | Math  |
@@ -81,7 +83,8 @@ values (1, "A", "m", 2500),
 (3, "C", "m",  5500),
 (4, "D", "f",  500);
 ```
-<pre>+----+------+-----+--------+
+<pre>
++----+------+-----+--------+
 | id | name | sex | salary |
 +----+------+-----+--------+
 |  1 | A    | m   |   2500 |
@@ -97,7 +100,8 @@ select id, name,
 case  when sex = "f" then "m" else "f" end 
 sex, salary from salary;
 ```
-<pre>+----+------+------+--------+
+<pre>
++----+------+------+--------+
 | id | name | sex  | salary |
 +----+------+------+--------+
 |  1 | A    | f    |   2500 |

@@ -112,4 +112,97 @@ sex, salary from salary;
 </pre>
 
 #### 作业三
-1.创建
+1.创建表(person、address)
+```
+创建person
+
+create table person(
+Personid int primary key,
+FirstName varchar(50) not null,
+LastName varchar(50) not null,
+);
+
+创建address
+
+create table address(
+AddressId int primary key,
+PersonId int not null,
+City varchar(50) not null,
+State varchar(50) not null
+;
+```
+
++ person 表
+<pre>
++-----------+-------------+------+------+---------+-------+
+| Field     | Type        | Null | Key  | Default | Extra |
++-----------+-------------+------+------+---------+-------+
+| Personid  | int(11)     | NO   | PRI  | NULL    |       |
+| FirstName | varchar(50) | NO   |      | NULL    |       |
+| LastName  | varchar(50) | NO   |      | NULL    |       |
++-----------+-------------+------+------+---------+-------+
+</pre>
+
+
++ address 表
+<pre>
++-----------+-------------+------+------+---------+-------+
+| Field     | Type        | Null | Key  | Default | Extra |
++-----------+-------------+------+------+---------+-------+
+| AddressId | int(11)     | NO   | PRI  | NULL    |       |
+| PersonId  | int(11)     | NO   |      | NULL    |       |
+| City      | varchar(50) | NO   |      | NULL    |       |
+| State     | varchar(50) | NO   |      | NULL    |       |
++-----------+-------------+------+------+---------+-------+
+</pre>
+
+2.person插入数据
+```
+insert into person
+values (1, "xiao", "ming"),
+(2, "xiao", "hong"),
+(3, "xiao", "hei");
+```
+<pre>
++----------+-----------+----------+
+| Personid | FirstName | LastName |
++----------+-----------+----------+
+|        1 | xiao      | ming     |
+|        2 | xiao      | hong     |
+|        3 | xiao      | hei      |
++----------+-----------+----------+
+</pre>
+
+3.address插入数据
+```
+insert into address
+values (1, 3, "shenzhen", "guangdong"),
+(2, 2, "nanchang", "jiangxi"),
+(3, 1, "wuhan", "hubei");
+```
+<pre>
++-----------+-------------+------+------+---------+-------+
+| Field     | Type        | Null | Key  | Default | Extra |
++-----------+-------------+------+------+---------+-------+
+| AddressId | int(11)     | NO   | PRI  | NULL    |       |
+| PersonId  | int(11)     | NO   |      | NULL    |       |
+| City      | varchar(50) | NO   |      | NULL    |       |
+| State     | varchar(50) | NO   |      | NULL    |       |
++-----------+-------------+------+------+---------+-------+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

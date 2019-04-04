@@ -54,3 +54,58 @@ from (select distinct *
 group by c_r.class  
 having count(c_r.class) >= 5;
 ```
+<pre>+-------+
+| class |
++-------+
+| Math  |
++-------+
+</pre>
+
+#### 作业二
+1.创建表(salary)
+```
+create table salary(
+id int primary key,
+name varchar(50) not null,
+sex varchar(50) not null,
+salary varchar(50) not null
+);
+
+```
+
+2.插入数据
+```
+insert into salary
+values (1, "A", "m", 2500),
+(2, "B", "f",  1500),
+(3, "C", "m",  5500),
+(4, "D", "f",  500);
+```
+<pre>+----+------+-----+--------+
+| id | name | sex | salary |
++----+------+-----+--------+
+|  1 | A    | m   |   2500 |
+|  2 | B    | f   |   1500 |
+|  3 | C    | m   |   5500 |
+|  4 | D    | f   |    500 |
++----+------+-----+--------+
+</pre>
+
+3.交换所有的 f 和 m 值
+```
+select id, name, 
+case  when sex = "f" then "m" else "f" end 
+sex, salary from salary;
+```
+<pre>+----+------+------+--------+
+| id | name | sex  | salary |
++----+------+------+--------+
+|  1 | A    | f    |   2500 |
+|  2 | B    | m    |   1500 |
+|  3 | C    | f    |   5500 |
+|  4 | D    | m    |    500 |
++----+------+------+--------+
+</pre>
+
+#### 作业三
+1.创建

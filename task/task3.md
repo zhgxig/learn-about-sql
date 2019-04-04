@@ -197,6 +197,15 @@ select ps.FirstName, ps.LastName, ad.City, ad.State from person as ps
 join address as ad 
 on ps.PersonId = ad.PersonId;
 ```
+<pre>
++-----------+----------+----------+-----------+
+| FirstName | LastName | City     | State     |
++-----------+----------+----------+-----------+
+| xiao      | hei      | shenzhen | guangdong |
+| xiao      | hong     | nanchang | jiangxi   |
+| xiao      | ming     | wuhan    | hubei     |
++-----------+----------+----------+-----------+
+</pre>
 
 
 #### 作业四

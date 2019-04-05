@@ -1,2 +1,2 @@
-*  [1、ubuntu安装mysql](install_mysql)
-*  [2、sql基本命令](basic_sql_skills)
+*  [1.ubuntu install mysql](install_mysql)
+*  [2.sql basic skill](basic_sql_skills)

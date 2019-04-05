@@ -19,8 +19,13 @@
 + CREATE INDEX - 创建索引（搜索键）
 + DROP INDEX - 删除索引
 
+2.create database
 
-2.simple select 
+
+3.create table
+
+
+4.simple select 
 >SELECT 语句用于从数据库中选取数据
 
 + 1. `SELECT DISTINCT`  语句用于返回唯一不同的值。

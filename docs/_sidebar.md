@@ -1,0 +1,1 @@
+* [1、ubuntu安装mysql](docs/install_mysql.md)

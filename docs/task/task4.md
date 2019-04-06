@@ -228,3 +228,126 @@ ORDER BY Score DESC,Id ASC;
 +-------+------+
 </pre>
 
+
+#### 作业四(行程和用户)
+1.创建trips表
+```
+CREATE TABLE trips(
+Id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+Client_Id INT NOT NULL,
+Driver_Id INT NOT NULL,
+City_Id INT NOT NULL,
+Status ENUM('completed', 'cancelled_by_driver', 'cancelled_by_client') NOT NULL,
+Request_at DATE DEFAULT NULL);
+```
+
+<pre>
++------------+---------------------------------------------------------------+------+------+---------+----------------+
+| Field      | Type                                                          | Null | Key  | Default | Extra          |
++------------+---------------------------------------------------------------+------+------+---------+----------------+
+| Id         | int(11)                                                       | NO   | PRI  | NULL    | auto_increment |
+| Client_Id  | int(11)                                                       | NO   |      | NULL    |                |
+| Driver_Id  | int(11)                                                       | NO   |      | NULL    |                |
+| City_Id    | int(11)                                                       | NO   |      | NULL    |                |
+| Status     | enum(&apos;completed&apos;,&apos;cancelled_by_driver&apos;,&apos;cancelled_by_client&apos;) | NO   |      | NULL    |                |
+| Request_at | date                                                          | YES  |      | NULL    |                |
++------------+---------------------------------------------------------------+------+------+---------+----------------+
+</pre>
+
+2.创建user表
+```
+CREATE TABLE Users(
+Users_Id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+Banned VARCHAR(10) NOT NULL,
+Role ENUM('client', 'driver', 'partnet') NOT NULL);
+```
+
+<pre>
++----------+-----------------------------------+------+------+---------+----------------+
+| Field    | Type                              | Null | Key  | Default | Extra          |
++----------+-----------------------------------+------+------+---------+----------------+
+| Users_Id | int(11)                           | NO   | PRI  | NULL    | auto_increment |
+| Banned   | varchar(10)                       | NO   |      | NULL    |                |
+| Role     | enum(&apos;client&apos;,&apos;driver&apos;,&apos;partnet&apos;) | NO   |      | NULL    |                |
++----------+-----------------------------------+------+------+---------+----------------+
+</pre>
+
+3.插入trips的数据
+```
+INSERT INTO trips
+VALUES (1,1,10,1,'completed','2013-10-01'),
+(2,2,11,1, 'cancelled_by_driver','2013-10-01'),
+(3,3,12,6,'completed','2013-10-01'),
+(4,4,13,6,'cancelled_by_client','2013-10-01'),
+(5,1,10,1,'completed','2013-10-02'),
+(6,2,11,6,'completed','2013-10-02'),
+(7,3,12,6,'completed','2013-10-02'),
+(8,2,12,12,'completed','2013-10-03'),
+(9,3,10,12,'completed','2013-10-03'),
+(10,4,13,12, 'cancelled_by_driver','2013-10-03');
+```
+
+<pre>
++----+-----------+-----------+---------+---------------------+------------+
+| Id | Client_Id | Driver_Id | City_Id | Status              | Request_at |
++----+-----------+-----------+---------+---------------------+------------+
+|  1 |         1 |        10 |       1 | completed           | 2013-10-01 |
+|  2 |         2 |        11 |       1 | cancelled_by_driver | 2013-10-01 |
+|  3 |         3 |        12 |       6 | completed           | 2013-10-01 |
+|  4 |         4 |        13 |       6 | cancelled_by_client | 2013-10-01 |
+|  5 |         1 |        10 |       1 | completed           | 2013-10-02 |
+|  6 |         2 |        11 |       6 | completed           | 2013-10-02 |
+|  7 |         3 |        12 |       6 | completed           | 2013-10-02 |
+|  8 |         2 |        12 |      12 | completed           | 2013-10-03 |
+|  9 |         3 |        10 |      12 | completed           | 2013-10-03 |
+| 10 |         4 |        13 |      12 | cancelled_by_driver | 2013-10-03 |
++----+-----------+-----------+---------+---------------------+------------+
+</pre>
+
+
+
+4.插入user的数据
+```
+INSERT INTO Users
+VALUES (1, 'No', 'client'),
+(2, 'Yes', 'client'),
+(3, 'No', 'client'),
+(4, 'No', 'client'),
+(10, 'No', 'driver'),
+(11, 'No', 'driver'),
+(12, 'No', 'driver'),
+(13, 'No', 'driver');
+```
+
+<pre>
++----------+--------+--------+
+| Users_Id | Banned | Role   |
++----------+--------+--------+
+|        1 | No     | client |
+|        2 | Yes    | client |
+|        3 | No     | client |
+|        4 | No     | client |
+|       10 | No     | driver |
+|       11 | No     | driver |
+|       12 | No     | driver |
+|       13 | No     | driver |
++----------+--------+--------+
+</pre>
+
+
+5.查出 2013年10月1日 至 2013年10月3日 期间非禁止用户的取消
+```
+SELECT t.Request_at AS 'Day', ROUND((SUM(CASE WHEN t.Status LIKE 'cancelled%' THEN 1 ELSE 0 END))/COUNT(*),2) AS 'Cancellation Rate'  FROM Trips AS t INNER JOIN User AS u  ON u.Users_Id = t.Client_Id AND u.Banned = 'No'  
+GROUP BY t.Request_at 
+order by t.Request_at;
+```
+
+<pre>
++------------+-------------------+
+| Day        | Cancellation Rate |
++------------+-------------------+
+| 2013-10-01 |              0.33 |
+| 2013-10-02 |              0.00 |
+| 2013-10-03 |              0.50 |
++------------+-------------------+
+</pre>

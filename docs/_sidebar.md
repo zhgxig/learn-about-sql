@@ -1,2 +1,5 @@
 *  [1.ubuntu install mysql](install_mysql)
-*  [2.sql basic skills](basic_sql_skills)
+*  [2.mysql_data_type](mysql_data_type)
+*  [3.sql_programming_style](sql_programming_style)
+*  [4.sql basic skills](basic_sql_skills)
+*  [5.senior_sql_skills](senior_sql_skills)

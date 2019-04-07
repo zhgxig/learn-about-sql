@@ -351,3 +351,37 @@ order by t.Request_at;
 | 2013-10-03 |              0.50 |
 +------------+-------------------+
 </pre>
+
+
+
+#### 作业五(各部门前3高工资的员工)
+
+1.各部门前3高工资的员工
+```
+SELECT d.name, e.Name ,e.salary
+FROM employee e 
+JOIN department d
+ON e.department_id = d.id
+WHERE salary IN
+    (select salary 
+    from employee 
+    group by department_id, salary
+    order by department_id, salary desc
+    having count(distinct department_id) <= 3 
+    )
+order by e.department_id asc, e.salary desc;
+```
+
+#### 作业六(分数排名)
+
+1.实现排名功能，但是排名是非连续的
+```
+SELECT Score,
+        (SELECT COUNT(Score)
+            FROM score AS s2 
+            WHERE s2.Score>=s1.Score
+        ) 
+FROM score AS s1
+ORDER BY Score DESC
+; 
+```

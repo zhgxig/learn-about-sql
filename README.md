@@ -19,7 +19,7 @@
     + pymysql (pip install pymysql)
     
 + 2.2 build db 
-    + [build db example]()
+    + [build db example](docs/build_sqlalchemy_db.md)
 
 + 2.3 crud operation
     + [crud operation example]()
